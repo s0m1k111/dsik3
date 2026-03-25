@@ -5,6 +5,7 @@ export function renderChatList(chats) {
   chats.forEach((chat) => {
     const div = document.createElement("div");
     div.className = "chat-item";
+    div.dataset.chat = chat.chatId;
 
     const name = chat.partner ? chat.partner.username : "Неизвестный";
     const last = chat.lastMessage ? chat.lastMessage.text : "Нет сообщений";
@@ -14,11 +15,25 @@ export function renderChatList(chats) {
       <span>${last}</span>
     `;
 
-    div.addEventListener("click", () => {
-      console.log("Открыть чат:", chat.chatId);
-      // позже добавим открытие чата
-    });
+    container.appendChild(div);
+  });
+}
+
+export function renderMessages(messages) {
+  const container = document.getElementById("chatWindow");
+  container.innerHTML = "";
+
+  messages.forEach((msg) => {
+    const div = document.createElement("div");
+    div.className = "message";
+
+    div.innerHTML = `
+      <p><strong>${msg.senderId}</strong></p>
+      <p>${msg.text}</p>
+    `;
 
     container.appendChild(div);
   });
+
+  container.scrollTop = container.scrollHeight;
 }
