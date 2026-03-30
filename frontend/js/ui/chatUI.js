@@ -19,21 +19,27 @@ export function renderChatList(chats) {
   });
 }
 
-export function renderMessages(messages) {
+export function renderMessages(messages, partnerName) {
   const container = document.getElementById("chatWindow");
-  container.innerHTML = "";
+
+  container.innerHTML = `
+    <h2>${partnerName}</h2>
+    <div id="messages"></div>
+  `;
+
+  const msgBox = document.getElementById("messages");
 
   messages.forEach((msg) => {
     const div = document.createElement("div");
     div.className = "message";
 
     div.innerHTML = `
-      <p><strong>${msg.senderId}</strong></p>
+      <p><strong>${msg.senderName}</strong></p>
       <p>${msg.text}</p>
     `;
 
-    container.appendChild(div);
+    msgBox.appendChild(div);
   });
 
-  container.scrollTop = container.scrollHeight;
+  msgBox.scrollTop = msgBox.scrollHeight;
 }

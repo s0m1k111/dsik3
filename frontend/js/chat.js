@@ -3,6 +3,7 @@ import { getMessages, sendMessage } from "./api/messages.js";
 import { renderChatList, renderMessages } from "./ui/chatUI.js";
 
 let currentChatId = null;
+let chatList = [];
 
 async function openChat(chatId) {
   currentChatId = chatId;
@@ -14,22 +15,32 @@ async function openChat(chatId) {
     return;
   }
 
-  renderMessages(data.messages);
+  // Находим чат в списке
+  const chat = chatList.find((c) => c.chatId === chatId);
+
+  const partnerName = chat?.partner?.username || "Неизвестный";
+
+  // Добавляем senderName к каждому сообщению
+  data.messages.forEach((msg) => {
+    msg.senderName = msg.senderId === chat.partner.id ? chat.partner.username : "Вы";
+  });
+
+  renderMessages(data.messages, partnerName);
 }
 
 async function init() {
-  const chats = await getChatList();
+  const data = await getChatList();
 
-  if (chats.error) {
-    alert(chats.error);
+  if (data.error) {
+    alert(data.error);
     return;
   }
 
-  // Рендерим список чатов
-  renderChatList(chats.chats);
+  chatList = data.chats;
 
-  // Добавляем обработчики кликов
-  chats.chats.forEach((chat) => {
+  renderChatList(chatList);
+
+  chatList.forEach((chat) => {
     const element = document.querySelector(`[data-chat="${chat.chatId}"]`);
     if (element) {
       element.addEventListener("click", () => openChat(chat.chatId));
