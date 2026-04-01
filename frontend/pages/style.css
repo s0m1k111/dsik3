@@ -285,3 +285,47 @@ body {
   flex-direction: column;
   gap: 10px;
 }
+
+/* ------------------------------ */
+/*      ПОЛЕ ВВОДА СООБЩЕНИЯ      */
+/* ------------------------------ */
+
+#inputArea {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid var(--jp-border);
+}
+
+#messageInput {
+  flex: 1;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--jp-border);
+  background: var(--jp-panel);
+  color: var(--jp-text);
+  font-size: 15px;
+  outline: none;
+  transition: 0.25s;
+}
+
+#messageInput:focus {
+  border-color: var(--jp-accent);
+  box-shadow: 0 0 6px rgba(214, 69, 69, 0.3);
+}
+
+#sendBtn {
+  padding: 12px 18px;
+  background: var(--jp-accent);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+#sendBtn:hover {
+  background: #b83a3a;
+}

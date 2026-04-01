@@ -5,6 +5,9 @@ import { renderChatList, renderMessages } from "./ui/chatUI.js";
 let currentChatId = null;
 let chatList = [];
 
+const input = document.getElementById("messageInput");
+const sendBtn = document.getElementById("sendBtn");
+
 async function openChat(chatId) {
   currentChatId = chatId;
 
@@ -46,6 +49,53 @@ async function init() {
       element.addEventListener("click", () => openChat(chat.chatId));
     }
   });
+}
+
+// Отправка по кнопке
+sendBtn.addEventListener("click", () => {
+  sendCurrentMessage();
+});
+
+// Отправка по Enter
+input.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    sendCurrentMessage();
+  }
+});
+
+// Функция отправки
+async function sendCurrentMessage() {
+  if (!currentChatId) return;
+  const text = input.value.trim();
+  if (!text) return;
+
+  input.value = "";
+
+  // Мгновенно добавляем в UI
+  addMessageToUI({
+    senderName: "Вы",
+    text,
+  });
+
+  // Отправляем на сервер
+  await sendMessage(currentChatId, text);
+}
+
+// Добавление сообщения в UI
+function addMessageToUI(msg) {
+  const msgBox = document.getElementById("messages");
+
+  const div = document.createElement("div");
+  div.className = `message ${msg.senderName === "Вы" ? "right" : "left"}`;
+
+  div.innerHTML = `
+    <strong>${msg.senderName}</strong>
+    <p>${msg.text}</p>
+  `;
+
+  msgBox.appendChild(div);
+  msgBox.scrollTop = msgBox.scrollHeight;
 }
 
 init();

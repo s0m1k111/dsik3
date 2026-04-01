@@ -20,21 +20,23 @@ export function renderChatList(chats) {
 }
 
 export function renderMessages(messages, partnerName) {
-  const container = document.getElementById("chatWindow");
-
-  container.innerHTML = `
-    <h2>${partnerName}</h2>
-    <div id="messages"></div>
-  `;
-
+  const header = document.getElementById("chatHeader");
   const msgBox = document.getElementById("messages");
+
+  // Обновляем заголовок
+  header.innerHTML = `<h2>${partnerName}</h2>`;
+
+  // Очищаем сообщения
+  msgBox.innerHTML = "";
 
   messages.forEach((msg) => {
     const div = document.createElement("div");
-    div.className = "message";
+    const isYou = msg.senderName === "Вы";
+
+    div.className = `message ${isYou ? "right" : "left"}`;
 
     div.innerHTML = `
-      <p><strong>${msg.senderName}</strong></p>
+      <strong>${msg.senderName}</strong>
       <p>${msg.text}</p>
     `;
 
