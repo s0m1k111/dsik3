@@ -2,6 +2,11 @@ import { getChatList } from "./api/channels.js";
 import { getMessages, sendMessage } from "./api/messages.js";
 import { renderChatList, renderMessages } from "./ui/chatUI.js";
 
+document.addEventListener("DOMContentLoaded", () => {
+  const inputArea = document.getElementById("inputArea");
+  if (inputArea) inputArea.classList.add("hidden");
+});
+
 let currentChatId = null;
 let chatList = [];
 
@@ -79,7 +84,13 @@ async function sendCurrentMessage() {
   });
 
   // Отправляем на сервер
-  await sendMessage(currentChatId, text);
+  const res = await sendMessage(currentChatId, text);
+
+  if (res.error) {
+    console.error("Ошибка отправки:", res.error);
+    alert("Ошибка отправки сообщения");
+    return;
+  }
 }
 
 // Добавление сообщения в UI

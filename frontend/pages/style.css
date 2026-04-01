@@ -329,3 +329,33 @@ body {
 #sendBtn:hover {
   background: #b83a3a;
 }
+
+/* Скрытие */
+.hidden {
+  display: none;
+}
+
+/* Обёртка сообщений */
+#messagesWrapper {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+/* Делаем chatWindow вертикальным flex-контейнером */
+#chatWindow {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Фиксированное поле ввода */
+#inputArea {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-top: 1px solid var(--jp-border);
+  background: var(--jp-bg);
+  position: sticky;
+  bottom: 0;
+}

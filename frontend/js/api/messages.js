@@ -17,13 +17,13 @@ export async function getMessages(chatId) {
 export async function sendMessage(chatId, text) {
   const token = getToken();
 
-  const res = await fetch(`${API_URL}/dm/${chatId}/send`, {
+  const res = await fetch(`${API_URL}/dm/send`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({ text }),
+    body: JSON.stringify({ chatId, text }),
   });
 
   return res.json();

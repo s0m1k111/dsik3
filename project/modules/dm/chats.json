@@ -1,7 +1,10 @@
 [
   {
     "id": "chat_amo00mw4",
-    "members": ["u_d51472e2", "u_1ff36bb3"],
+    "members": [
+      "u_d51472e2",
+      "u_1ff36bb3"
+    ],
     "messages": [
       {
         "id": "msg_11k64xok",
@@ -20,6 +23,48 @@
         "senderId": "u_d51472e2",
         "text": "Сообщение 2",
         "timestamp": 1774217837690
+      },
+      {
+        "id": "msg_a0r950u1",
+        "senderId": "u_d51472e2",
+        "text": "привет",
+        "timestamp": 1775064752637
+      },
+      {
+        "id": "msg_eg6jizhe",
+        "senderId": "u_d51472e2",
+        "text": "что",
+        "timestamp": 1775064758331
+      },
+      {
+        "id": "msg_ztyfc8vb",
+        "senderId": "u_1ff36bb3",
+        "text": "ого",
+        "timestamp": 1775064835735
+      },
+      {
+        "id": "msg_1r8mr6y4",
+        "senderId": "u_d51472e2",
+        "text": "я рад что это работает",
+        "timestamp": 1775064974783
+      },
+      {
+        "id": "msg_q1eit16r",
+        "senderId": "u_d51472e2",
+        "text": "проверка",
+        "timestamp": 1775065281513
+      },
+      {
+        "id": "msg_ws7hzh31",
+        "senderId": "u_d51472e2",
+        "text": "sfs",
+        "timestamp": 1775065460504
+      },
+      {
+        "id": "msg_sun6h1o0",
+        "senderId": "u_d51472e2",
+        "text": "sfsf",
+        "timestamp": 1775065882507
       }
     ]
   }
